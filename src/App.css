@@ -1,0 +1,25 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0F0F0F;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: grey;
+}
+
+#icon{
+    position: relative;
+    top: 6px;
+    margin-right: 20px;
+    font-size: 30px;
+}
+a:hover{
+    color: whitesmoke;
+}
