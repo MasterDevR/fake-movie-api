@@ -14,16 +14,22 @@ const SearchMovie = () => {
       .then((res) => {
         const data = res.data.Search;
         setSearchedMovie(data);
+      })
+      .catch((err) => {
+        return console.log(err);
       });
   }, [title]);
-  console.log(searchedMovie);
 
   const movie = searchedMovie.map((movie) => {
     return (
       <div key={movie.imdbID} className={classes.cardWrapper}>
         <img alt={movie.Title} src={movie.Poster} id="image" />
-        <span id="title">Title: {movie.Title}</span>
-        <span id="year">Year: {movie.Year}</span>
+        <span id="title">
+          <span id="titleHolder">Title:</span> {movie.Title}
+        </span>
+        <span id="year">
+          <span id="titleHolder">Date:</span> {movie.Year}
+        </span>
       </div>
     );
   });

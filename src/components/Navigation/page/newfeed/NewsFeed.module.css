@@ -3,4 +3,6 @@
     flex-direction: column;
     gap: 30px;
 }
-
+.active{
+    color: white;
+}

@@ -3,11 +3,11 @@
     flex-direction: column;
     flex-wrap: nowrap;
     gap: 50px;
-    position: relative;
+    position: fixed;
     left: 3%;
     border-right: solid 1px #838383;
     max-width: 21%;
-    height: 78vh;
+    height: 100vh;
     padding-top: 36px;
     font-size: 1.5rem;
     font-weight: bold;

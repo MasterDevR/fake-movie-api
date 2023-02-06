@@ -9,8 +9,11 @@ import UserNotification from "./Notification/UserNotification";
 const RootPage = () => {
   return (
     <Fragment>
-      <div className={classes.rootPageWrapper}>
+      <div>
         <Navigation />
+      </div>
+
+      <div className={classes.rootPageWrapper}>
         <SearchBar />
         <UserNotification />
       </div>

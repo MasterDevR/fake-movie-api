@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     element: <RootPage />,
     children: [
       {
-        path: "browse",
+        path: "/browse",
         element: <Browse />,
       },
       {
@@ -39,3 +39,5 @@ const App = () => {
 };
 
 export default App;
+
+// 90564902bbc272fc9b74e023a801f674
