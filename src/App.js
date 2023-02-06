@@ -3,7 +3,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootPage from "./components/RootPage";
 import "./App.css";
 import Browse from "./components/Navigation/page/newfeed/Browse";
-
+import SearchMovie from "./components/search/SearchMovie";
+import { action as submitTitleAction } from "./components/search/SearchBar";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
       {
         path: "CommingSoon",
         element: <Browse />,
+      },
+      {
+        path: "SearchMovie/:movieId",
+        element: <SearchMovie />,
+        action: submitTitleAction,
       },
     ],
   },

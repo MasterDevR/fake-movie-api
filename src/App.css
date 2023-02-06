@@ -23,3 +23,26 @@ a {
 a:hover{
     color: whitesmoke;
 }
+.Outlet {
+    position: relative;
+    left: 21%;
+    bottom: 500px;
+    max-width: 77%;
+}
+.card{
+    display: flex;
+    background-color: #1c2323b8;
+    border-radius: 30px;
+    height: auto;
+}
+#image {
+    height: 300px;
+    border-radius: 22px;
+    cursor: pointer;
+}
+
+#title {
+    position: relative;
+    width: 200px;
+    cursor: pointer;
+}

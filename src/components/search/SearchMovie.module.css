@@ -1,0 +1,18 @@
+.SearchMovieWrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    row-gap: 30px;
+    
+    margin: 30px;
+}
+.cardWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    font-size: 26px;
+    line-height: 1.5;
+    height: auto;
+}
