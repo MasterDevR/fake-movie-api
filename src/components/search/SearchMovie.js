@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, redirect } from "react-router-dom";
 import classes from "./SearchMovie.module.css";
 const SearchMovie = () => {
   const params = useParams();
@@ -41,3 +41,11 @@ const SearchMovie = () => {
 };
 
 export default SearchMovie;
+
+export const action = async ({ request }) => {
+  const data = await request.formData();
+
+  const searchedTitle = data.get("searchedTitle");
+
+  return redirect(`/SearchMovie/${searchedTitle}`);
+};

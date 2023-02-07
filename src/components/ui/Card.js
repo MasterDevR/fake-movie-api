@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import HighlightedMovie from "./highlightedMovie";
 const Card = (props) => {
+  const [highlightedMovie, setHighlightedMovie] = useState([{}]);
+
   const popularMovie = props.items;
 
   const movie = popularMovie.map((movie) => {
@@ -10,9 +13,13 @@ const Card = (props) => {
       date = movie.first_air_date;
     }
 
-    const activeMovieHandler = (e) => {
+    const ActiveMovieHandler = (e) => {
       const event = e.target.alt;
-      console.log(event);
+
+      const data = popularMovie.find((item) => {
+        return item.id === +event;
+      });
+      setHighlightedMovie(data);
     };
 
     return (
@@ -21,7 +28,7 @@ const Card = (props) => {
           src={`https://www.themoviedb.org/t/p/w220_and_h330_face${movie.backdrop_path}`}
           alt={movie.id}
           id="image"
-          onClick={activeMovieHandler}
+          onClick={ActiveMovieHandler}
         />
         <div className="movieInfo">
           <span id="title">
@@ -37,7 +44,12 @@ const Card = (props) => {
     );
   });
 
-  return <div className="browseWrapper">{movie}</div>;
+  return (
+    <div>
+      <HighlightedMovie item={highlightedMovie} />
+      <div className="browseWrapper">{movie}</div>
+    </div>
+  );
 };
 
 export default Card;

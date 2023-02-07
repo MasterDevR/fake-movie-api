@@ -3,12 +3,15 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootPage from "./components/RootPage";
 import "./App.css";
 import Browse from "./components/Navigation/page/newfeed/Browse";
-import SearchMovie from "./components/search/SearchMovie";
-import { action as submitTitleAction } from "./components/search/SearchBar";
+import SearchMovie, {
+  action as submitTitleAction,
+} from "./components/search/SearchMovie";
+import ErrorPage from "./components/Navigation/page/error/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootPage />,
+    // errorElement: <ErrorPage />,
     children: [
       {
         path: "/browse",

@@ -14,6 +14,12 @@ a {
     text-decoration: none;
     color: grey;
 }
+.center{
+    text-align: center;
+}
+.red{
+    color: rgba(255, 0, 0, 0.9);
+}
 /* search */
 #icon{
     position: relative;
@@ -92,16 +98,15 @@ h1{
     display: none;
 }
 .browseWrapper::-webkit-scrollbar {
-    height: .3em;
+    height: .1rem;
 }
 
 .browseWrapper::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 6px rgba(255, 252, 252, 0.3);
 }
 
 .browseWrapper::-webkit-scrollbar-thumb {
-    cursor: pointer;
     border-radius: 30px;
     background-color: darkgrey;
-    outline: 1px solid slategrey;
+    outline: 1px solid rgb(223, 226, 230);
 }
