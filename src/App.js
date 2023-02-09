@@ -7,6 +7,9 @@ import SearchMovie, {
   action as submitTitleAction,
 } from "./components/search/SearchMovie";
 import ErrorPage from "./components/Navigation/page/error/ErrorPage";
+
+// store
+import Store from "./store/store";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -16,6 +19,12 @@ const router = createBrowserRouter([
       {
         path: "/browse",
         element: <Browse />,
+        children: [
+          {
+            path: ":movieId/:title/:date",
+            element: <Browse />,
+          },
+        ],
       },
       {
         path: "WatchList",
@@ -35,9 +44,11 @@ const router = createBrowserRouter([
 ]);
 const App = () => {
   return (
-    <div className="appWrapper">
-      <RouterProvider router={router} />
-    </div>
+    <Store>
+      <div className="appWrapper">
+        <RouterProvider router={router} />
+      </div>
+    </Store>
   );
 };
 
