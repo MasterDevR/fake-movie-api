@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "../../../../ui/Card";
 
-import useHttps from "../../../../hooks/useHttps";
+import useHttps from "../../../../../hooks/useHttps";
 
 const Discover = () => {
   const { sendRequest: fetchTasks } = useHttps();
