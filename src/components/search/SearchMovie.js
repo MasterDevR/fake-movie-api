@@ -10,9 +10,11 @@ const SearchMovie = () => {
 
   useEffect(() => {
     axios
-      .get(`https://www.omdbapi.com/?s=${title}&apikey=a675619b`)
+      .get(
+        `https://api.themoviedb.org/3/search/movie?api_key=90564902bbc272fc9b74e023a801f674&query=${title}`
+      )
       .then((res) => {
-        const data = res.data.Search;
+        const data = res.data.results;
         setSearchedMovie(data);
       })
       .catch((err) => {
@@ -20,19 +22,40 @@ const SearchMovie = () => {
       });
   }, [title]);
 
-  const movie = searchedMovie.map((movie) => {
-    return (
-      <div key={movie.imdbID} className={classes.cardWrapper}>
-        <img alt={movie.Title} src={movie.Poster} id="image" />
-        <span id="title">
-          <span id="titleHolder">Title:</span> {movie.Title}
-        </span>
-        <span id="year">
-          <span id="titleHolder">Date:</span> {movie.Year}
-        </span>
-      </div>
-    );
-  });
+  const movie = searchedMovie
+    .filter((item) => {
+      return item.backdrop_path !== null;
+    })
+    .map((movie) => {
+      let title = movie.title;
+      let date = movie.release_date;
+      let poster = movie.backdrop_path;
+      let id = movie.id;
+
+      if (movie.name && movie.first_air_date) {
+        title = movie.name;
+        date = movie.first_air_date;
+      }
+      return (
+        <div key={id} className={classes.cardWrapper}>
+          <img
+            src={`https://www.themoviedb.org/t/p/w220_and_h330_face${poster}`}
+            alt={title}
+            className="image"
+          />
+          <div className="movieInfo">
+            <span id="title">
+              <span id="titleHolder">Title: </span>
+              {title}
+            </span>
+            <span id="date">
+              <span id="titleHolder"> Date: </span>
+              {date}
+            </span>
+          </div>
+        </div>
+      );
+    });
   return (
     <div className="card">
       <div className={classes.SearchMovieWrapper}>{movie}</div>

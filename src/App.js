@@ -10,11 +10,14 @@ import ErrorPage from "./components/Navigation/page/error/ErrorPage";
 
 // store
 import Store from "./store/store";
+import WatchList from "./components/Navigation/page/newfeed/WatchList";
+
+import CommingSoon from "./components/Navigation/page/newfeed/CommingSoon";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootPage />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/browse",
@@ -28,11 +31,11 @@ const router = createBrowserRouter([
       },
       {
         path: "WatchList",
-        element: <Browse />,
+        element: <WatchList />,
       },
       {
         path: "CommingSoon",
-        element: <Browse />,
+        element: <CommingSoon />,
       },
       {
         path: "SearchMovie/:movieId",

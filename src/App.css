@@ -47,11 +47,11 @@ a:hover{
     border-radius: 30px;
     height: auto;
 }
-#image {
+.image {
     height: 300px;
     border-radius: 22px;
     cursor: pointer;
-    transition: .5s;
+    transition: 300ms;
 }
 #image:hover {
     height: 400px;
@@ -101,7 +101,7 @@ h1{
 
 
 .browseWrapper::-webkit-scrollbar {
-    height: .1rem;
+    height: .3rem;
 }
 
 .browseWrapper::-webkit-scrollbar-track {
