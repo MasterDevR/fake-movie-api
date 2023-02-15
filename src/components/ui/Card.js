@@ -1,14 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { movieStoreHandler } from "../../store/store";
+
+import classes from "./highlighted.module.css";
 
 const Card = (props) => {
   const ctx = useContext(movieStoreHandler);
   const popularMovie = props.items;
+  let activeMovieId = ctx.activeMovieId;
+  const [activeListItem, setActiveListItem] = useState(activeMovieId);
 
-  const ActiveMoiveHandler = () => {
-    ctx.addItem(popularMovie);
+  const ActiveMoiveHandler = (id) => {
+    ctx.addItem(popularMovie, id);
+    activeListItem === activeMovieId
+      ? setActiveListItem()
+      : setActiveListItem(activeMovieId);
   };
+  useEffect(() => {}, [activeMovieId]);
+
+  console.log(activeMovieId);
 
   const movie = popularMovie
     .filter((item) => {
@@ -24,11 +34,17 @@ const Card = (props) => {
         title = movie.name;
         date = movie.first_air_date;
       }
+      // to do: add a component name inside url
       return (
         <NavLink
           key={id}
-          to={`/browse/${id}/${title}/${date}`}
-          onClick={ActiveMoiveHandler}
+          to={`/browse/${props.type}/${id}/${title}/${date}`}
+          className={
+            id === activeListItem
+              ? classes.activeContainer
+              : classes.imageWrapper
+          }
+          onClick={() => ActiveMoiveHandler(id)}
         >
           <img
             src={`https://www.themoviedb.org/t/p/w220_and_h330_face${poster}`}

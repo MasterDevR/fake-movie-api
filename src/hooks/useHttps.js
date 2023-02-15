@@ -1,21 +1,30 @@
-import React, { useCallback } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useHttps = () => {
-  const sendRequest = useCallback(async (requestConfig) => {
+const UseHttps = (url) => {
+  const [movieData, setMovieData] = useState(undefined);
+  const [isLoading, setIsloading] = useState(false);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    setIsloading(true);
     axios
-      .get(requestConfig)
-      .then((res) => {
-        return res.data.results;
+      .get(url)
+      .then((response) => {
+        setMovieData(response.data.results);
       })
       .catch((err) => {
-        return console.log(err);
+        setError(err);
+      })
+      .finally(() => {
+        setIsloading(false);
       });
-  }, []);
+  }, [url]);
 
   return {
-    sendRequest,
+    movieData,
+    isLoading,
+    error,
   };
 };
 
-export default useHttps;
+export default UseHttps;

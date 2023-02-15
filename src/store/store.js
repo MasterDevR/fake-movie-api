@@ -4,12 +4,19 @@ export const movieStoreHandler = createContext();
 
 const defaultMovieState = {
   activeMovie: [],
+  activeMovieId: null,
   displayActiveMovie: false,
 };
 const movieReducer = (state, action) => {
   if (action.type === "active") {
-    let updatedItems = (state.activeMovie = action.item);
-    return { activeMovie: updatedItems, displayActiveMovie: true };
+    let updatedItems = action.item;
+    let updatedActiveMovieId = +action.movieId;
+
+    return {
+      activeMovie: updatedItems,
+      activeMovieId: updatedActiveMovieId,
+      displayActiveMovie: true,
+    };
   }
   return defaultMovieState;
 };
@@ -20,13 +27,15 @@ const Store = (props) => {
     defaultMovieState
   );
 
-  const activeMovieHandler = (item) => {
-    dispatchMovieAction({ type: "active", item: item });
+  const activeMovieHandler = (item, movieId) => {
+    dispatchMovieAction({ type: "active", item: item, movieId });
   };
+
   const movieContext = {
     activeMovie: movieState.activeMovie,
-    addItem: activeMovieHandler,
+    activeMovieId: movieState.activeMovieId,
     displayActiveMovie: movieState.displayActiveMovie,
+    addItem: activeMovieHandler,
   };
 
   return (

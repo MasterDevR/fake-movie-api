@@ -11,14 +11,9 @@ import HighlightedMovie from "../../../ui/highlightedMovie";
 const Browse = () => {
   const ctx = useContext(movieStoreHandler);
   const isActive = ctx.displayActiveMovie;
+
   return (
     <div className={classes.BrowserWrapper}>
-      {isActive && (
-        <div className={classes.Popular}>
-          {" "}
-          <HighlightedMovie />{" "}
-        </div>
-      )}
       <div className={classes.Popular}>
         <h1>Trending</h1>
         <Trending />

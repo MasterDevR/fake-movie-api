@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Card from "../../../../ui/Card";
+import UseHttps from "../../../../../hooks/useHttps";
 
 const Trending = () => {
-  const [popularMovie, setPopularMovie] = useState([]);
+  const movieType = "trending";
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/trending/all/week?api_key=90564902bbc272fc9b74e023a801f674`
-      )
-      .then((res) => {
-        setPopularMovie(res.data.results);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const { movieData, isLoading, error } = UseHttps(
+    " https://api.themoviedb.org/3/trending/all/week?api_key=90564902bbc272fc9b74e023a801f674"
+  );
 
-  return <Card items={popularMovie} />;
+  if (isLoading) {
+    return <h1> Loading...</h1>;
+  }
+  if (error) {
+    console.log(error);
+  }
+  return (
+    <div>
+      {movieData !== undefined ? (
+        <Card items={movieData} type={movieType} />
+      ) : (
+        <h1> Loading....</h1>
+      )}
+      ;
+    </div>
+  );
 };
 
 export default Trending;
