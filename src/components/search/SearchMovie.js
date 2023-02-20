@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { movieStoreHandler } from "../../store/store";
 import axios from "axios";
 import { useParams, redirect } from "react-router-dom";
-import classes from "./SearchMovie.module.css";
+import Loader from "../Loader";
+import AddMovie from "../action/addMovie";
 const SearchMovie = () => {
+  const ctx = useContext(movieStoreHandler);
+  let activeMovieId = ctx.activeMovieId;
+
   const params = useParams();
   const title = params.movieId;
-
   const [searchedMovie, setSearchedMovie] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=90564902bbc272fc9b74e023a801f674&query=${title}`
@@ -19,6 +25,9 @@ const SearchMovie = () => {
       })
       .catch((err) => {
         return console.log(err);
+      })
+      .finally(() => {
+        return setIsLoading(false);
       });
   }, [title]);
 
@@ -37,7 +46,7 @@ const SearchMovie = () => {
         date = movie.first_air_date;
       }
       return (
-        <div key={id} className={classes.cardWrapper}>
+        <div key={id} className="cardWrapper">
           <img
             src={`https://www.themoviedb.org/t/p/w220_and_h330_face${poster}`}
             alt={title}
@@ -52,13 +61,16 @@ const SearchMovie = () => {
               <span id="titleHolder"> Date: </span>
               {date}
             </span>
+            <span className={id === activeMovieId ? "" : "display"}>
+              <AddMovie item={movie} />
+            </span>
           </div>
         </div>
       );
     });
   return (
     <div className="card">
-      <div className={classes.SearchMovieWrapper}>{movie}</div>
+      <div className="SearchMovieWrapper">{isLoading ? <Loader /> : movie}</div>
     </div>
   );
 };

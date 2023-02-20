@@ -1,11 +1,10 @@
 import React from "react";
 import NewsFeed from "./page/newfeed/NewsFeed";
-import classes from "./Navigation.module.css";
 const Navigation = () => {
   return (
-    <nav className={classes.navigationWrapper}>
+    <nav className="navigationWrapper">
       <span>
-        Fake <span id={classes.red}> Movie </span>
+        Fake <span id="red"> Movie </span>
       </span>
       <div>
         <NewsFeed />

@@ -4,20 +4,38 @@ export const movieStoreHandler = createContext();
 
 const defaultMovieState = {
   activeMovie: [],
+  watchList: [],
   activeMovieId: null,
-  displayActiveMovie: false,
+  isAddToWatchList: false,
 };
 const movieReducer = (state, action) => {
-  if (action.type === "active") {
+  if (action.type === "addToWatchListHandler") {
+    const newItem = action.item;
+
+    const existingItem = state.watchList.find((item) => item.id === newItem.id);
+
+    if (!existingItem) {
+      return {
+        watchList: state.watchList.concat(newItem),
+      };
+    }
+    return {
+      watchList: state.watchList,
+    };
+  }
+
+  if (action.type === "activeHandler") {
     let updatedItems = action.item;
     let updatedActiveMovieId = +action.movieId;
 
     return {
       activeMovie: updatedItems,
+      watchList: state.watchList,
       activeMovieId: updatedActiveMovieId,
-      displayActiveMovie: true,
+      isAddToWatchList: state.isAddToWatchList,
     };
   }
+
   return defaultMovieState;
 };
 
@@ -28,14 +46,22 @@ const Store = (props) => {
   );
 
   const activeMovieHandler = (item, movieId) => {
-    dispatchMovieAction({ type: "active", item: item, movieId });
+    dispatchMovieAction({ type: "activeHandler", item, movieId });
+  };
+  const addToWatchListHandler = (item) => {
+    dispatchMovieAction({
+      type: "addToWatchListHandler",
+      item,
+    });
   };
 
   const movieContext = {
     activeMovie: movieState.activeMovie,
     activeMovieId: movieState.activeMovieId,
-    displayActiveMovie: movieState.displayActiveMovie,
-    addItem: activeMovieHandler,
+    watchList: movieState.watchList,
+    isAddToWatchList: movieState.isAddToWatchList,
+    ActiveMovieHandler: activeMovieHandler,
+    addToWatchListHandler: addToWatchListHandler,
   };
 
   return (

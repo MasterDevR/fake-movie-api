@@ -13,6 +13,7 @@ import Store from "./store/store";
 import WatchList from "./components/Navigation/page/newfeed/WatchList";
 
 import CommingSoon from "./components/Navigation/page/newfeed/CommingSoon";
+import BookMark from "./components/Navigation/page/BookMark";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "WatchList",
         element: <WatchList />,
+      },
+      {
+        path: "BookeMarked",
+        element: <BookMark />,
       },
       {
         path: "CommingSoon",

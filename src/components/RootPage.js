@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { Outlet } from "react-router-dom";
-import classes from "./RootPage.module.css";
 
 import Navigation from "./Navigation/Navigation";
 import SearchBar from "./search/SearchBar";
@@ -13,7 +12,7 @@ const RootPage = () => {
         <Navigation />
       </div>
 
-      <div className={classes.rootPageWrapper}>
+      <div className="rootPageWrapper">
         <SearchBar />
         <UserNotification />
       </div>

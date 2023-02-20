@@ -1,73 +1,63 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
+
 import { NavLink } from "react-router-dom";
 import { movieStoreHandler } from "../../store/store";
 
-import classes from "./highlighted.module.css";
+import AddMovie from "../action/addMovie";
 
 const Card = (props) => {
   const ctx = useContext(movieStoreHandler);
-  const popularMovie = props.items;
+  const MovieObject = props.items;
+
   let activeMovieId = ctx.activeMovieId;
-  const [activeListItem, setActiveListItem] = useState(activeMovieId);
 
-  const ActiveMoiveHandler = (id) => {
-    ctx.addItem(popularMovie, id);
-    activeListItem === activeMovieId
-      ? setActiveListItem()
-      : setActiveListItem(activeMovieId);
+  const ActiveMovieHandler = (id) => {
+    ctx.ActiveMovieHandler(MovieObject, id);
   };
-  useEffect(() => {}, [activeMovieId]);
+  const movies = MovieObject.filter((item) => {
+    return item.backdrop_path !== null;
+  }).map((movie) => {
+    let title = movie.title;
+    let date = movie.release_date;
+    let poster = movie.backdrop_path;
+    let id = movie.id;
 
-  console.log(activeMovieId);
-
-  const movie = popularMovie
-    .filter((item) => {
-      return item.backdrop_path !== null;
-    })
-    .map((movie) => {
-      let title = movie.title;
-      let date = movie.release_date;
-      let poster = movie.backdrop_path;
-      let id = movie.id;
-
-      if (movie.name && movie.first_air_date) {
-        title = movie.name;
-        date = movie.first_air_date;
-      }
-      // to do: add a component name inside url
-      return (
-        <NavLink
-          key={id}
-          to={`/browse/${props.type}/${id}/${title}/${date}`}
-          className={
-            id === activeListItem
-              ? classes.activeContainer
-              : classes.imageWrapper
-          }
-          onClick={() => ActiveMoiveHandler(id)}
-        >
-          <img
-            src={`https://www.themoviedb.org/t/p/w220_and_h330_face${poster}`}
-            alt={title}
-            className="image"
-          />
-          <div className="movieInfo">
-            <span id="title">
-              <span id="titleHolder">Title: </span>
-              {title}
-            </span>
-            <span id="date">
-              <span id="titleHolder"> Date: </span>
-              {date}
-            </span>
-          </div>
-        </NavLink>
-      );
-    });
+    if (movie.name && movie.first_air_date) {
+      title = movie.name;
+      date = movie.first_air_date;
+    }
+    return (
+      <NavLink
+        key={id}
+        className={id === activeMovieId ? "activeContainer" : ""}
+        onClick={() => ActiveMovieHandler(id)}
+        to={`/browse/${props.type}/${id}/${title}/${date}`}
+      >
+        <img
+          src={`https://www.themoviedb.org/t/p/w220_and_h330_face${poster}`}
+          alt={title}
+          className={id === activeMovieId ? "activeImage" : "image"}
+        />
+        <div className="movieInfo">
+          <span id="title">
+            <span id="titleHolder">Title: </span>
+            {title}
+          </span>
+          <span id="date">
+            <span id="titleHolder"> Date: </span>
+            {date}
+          </span>
+          <span className={id === activeMovieId ? "" : "display"}>
+            <AddMovie item={movie} />
+          </span>
+        </div>
+      </NavLink>
+    );
+  });
 
   return (
     <div>
-      <div className="browseWrapper">{movie}</div>
+      <div className="CardWrapper">{movies}</div>
     </div>
   );
 };
