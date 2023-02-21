@@ -55,11 +55,7 @@ const Card = (props) => {
     );
   });
 
-  return (
-    <div>
-      <div className="CardWrapper">{movies}</div>
-    </div>
-  );
+  return <div className="CardWrapper">{movies}</div>;
 };
 
 export default Card;

@@ -1,11 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import Navigation from "./Navigation/Navigation";
 import SearchBar from "./search/SearchBar";
 import UserNotification from "./Notification/UserNotification";
-
+import UserAccount from "./Notification/UserAccount";
 const RootPage = () => {
+  const [isLogIn, setIsLogIn] = useState(false);
   return (
     <Fragment>
       <div>
@@ -14,7 +15,13 @@ const RootPage = () => {
 
       <div className="rootPageWrapper">
         <SearchBar />
-        <UserNotification />
+        {isLogIn ? (
+          <UserNotification />
+        ) : (
+          <div className="notificatioWrapper">
+            <UserAccount />
+          </div>
+        )}
       </div>
       <div className="Outlet">
         <Outlet />

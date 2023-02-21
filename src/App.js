@@ -34,10 +34,7 @@ const router = createBrowserRouter([
         path: "WatchList",
         element: <WatchList />,
       },
-      {
-        path: "BookeMarked",
-        element: <BookMark />,
-      },
+
       {
         path: "CommingSoon",
         element: <CommingSoon />,

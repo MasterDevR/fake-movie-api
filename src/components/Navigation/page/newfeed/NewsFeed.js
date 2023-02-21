@@ -25,14 +25,6 @@ const NewsFeed = () => {
         WatchList
       </NavLink>{" "}
       <NavLink
-        to="/BookeMarked"
-        style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        id="NavTitle"
-      >
-        <FiBookmark id="icon" />
-        BookMark
-      </NavLink>
-      <NavLink
         to="/CommingSoon"
         style={({ isActive }) => (isActive ? activeStyle : undefined)}
         id="NavTitle"

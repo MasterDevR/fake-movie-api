@@ -47,24 +47,26 @@ button:hover {
 /* root page  */
 .rootPageWrapper {
     position: relative;
+    width: 58%;
     left: 39%;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: flex-start;
     flex-wrap: nowrap;
     gap: 20%;
 
 }
 /* search bar */
-.SearchMovieWrapper {
+/* .SearchMovieWrapper {
     position: relative;
     left: 40px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    row-gap: 30px;
-}
+    gap: 50px;
+} */
 
 
 #searchBar {
@@ -180,6 +182,15 @@ a:hover{
 }
 
 /* cards */
+.card{
+    position: relative;
+    left: 40px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 32px
+}
 .activeContainer {
     display: flex;
     gap: 50px;
@@ -225,6 +236,16 @@ a:hover{
     fill: red;
     color: red;
     height: 30px;
+}
+/* notification */
+div>.useIcon {
+    border-radius: 50%;
+    height: 40px;
+}
+.notificatioWrapper {
+    display: flex;
+    gap: 50px;
+    margin-top: 39px;
 }
 /* browse */
 h1{

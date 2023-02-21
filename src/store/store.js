@@ -11,7 +11,6 @@ const defaultMovieState = {
 const movieReducer = (state, action) => {
   if (action.type === "addToWatchListHandler") {
     const newItem = action.item;
-
     const existingItem = state.watchList.find((item) => item.id === newItem.id);
 
     if (!existingItem) {
@@ -31,6 +30,7 @@ const movieReducer = (state, action) => {
     return {
       activeMovie: updatedItems,
       watchList: state.watchList,
+      active: state.active,
       activeMovieId: updatedActiveMovieId,
       isAddToWatchList: state.isAddToWatchList,
     };

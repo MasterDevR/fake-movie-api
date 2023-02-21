@@ -4,6 +4,7 @@ import axios from "axios";
 import { useParams, redirect } from "react-router-dom";
 import Loader from "../Loader";
 import AddMovie from "../action/addMovie";
+
 const SearchMovie = () => {
   const ctx = useContext(movieStoreHandler);
   let activeMovieId = ctx.activeMovieId;
@@ -13,6 +14,9 @@ const SearchMovie = () => {
   const [searchedMovie, setSearchedMovie] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const ActiveMovieHandler = (id) => {
+    ctx.ActiveMovieHandler(searchedMovie, id);
+  };
   useEffect(() => {
     setIsLoading(true);
     axios
@@ -31,7 +35,7 @@ const SearchMovie = () => {
       });
   }, [title]);
 
-  const movie = searchedMovie
+  const movies = searchedMovie
     .filter((item) => {
       return item.backdrop_path !== null;
     })
@@ -46,11 +50,15 @@ const SearchMovie = () => {
         date = movie.first_air_date;
       }
       return (
-        <div key={id} className="cardWrapper">
+        <div
+          key={id}
+          className={id === activeMovieId ? "activeContainer" : "cardWrapper"}
+          onClick={() => ActiveMovieHandler(id)}
+        >
           <img
             src={`https://www.themoviedb.org/t/p/w220_and_h330_face${poster}`}
             alt={title}
-            className="image"
+            className={id === activeMovieId ? "activeImage" : "image"}
           />
           <div className="movieInfo">
             <span id="title">
@@ -68,11 +76,7 @@ const SearchMovie = () => {
         </div>
       );
     });
-  return (
-    <div className="card">
-      <div className="SearchMovieWrapper">{isLoading ? <Loader /> : movie}</div>
-    </div>
-  );
+  return <div className="card">{isLoading ? <Loader /> : movies}</div>;
 };
 
 export default SearchMovie;

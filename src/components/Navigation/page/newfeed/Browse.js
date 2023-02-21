@@ -1,14 +1,8 @@
-import React, { useContext } from "react";
-
 import Popular from "./browse/Popular";
 import Trending from "./browse/Trending";
 import Discover from "./browse/Discover";
-import { movieStoreHandler } from "../../../../store/store";
 
 const Browse = () => {
-  const ctx = useContext(movieStoreHandler);
-  const isActive = ctx.displayActiveMovie;
-
   return (
     <div>
       <div className="DisplayWrapper">

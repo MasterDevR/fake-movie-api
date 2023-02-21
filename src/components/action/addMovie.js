@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { FiHeart, FiBookmark, FiMoreHorizontal } from "react-icons/fi";
 import { movieStoreHandler } from "../../store/store";
 
@@ -15,7 +15,7 @@ const AddMovie = (props) => {
     return movie.id === activeMovieId;
   });
 
-  const watchListHandler = (e, id) => {
+  const watchListHandler = (e) => {
     setAddToWatchList(!addToWatchList);
     ctx.addToWatchListHandler(...movie);
   };
@@ -28,7 +28,7 @@ const AddMovie = (props) => {
 
   return (
     <div className="action">
-      <button onClick={(e) => watchListHandler(e, props.item.id)}>
+      <button onClick={(e) => watchListHandler(e)}>
         <FiHeart id={addToWatchList ? "actionIcon" : ""} />
       </button>
       <button onClick={bookMarkedHandler}>
