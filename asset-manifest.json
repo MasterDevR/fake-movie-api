@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/fake-movie-api/static/css/main.51b19700.css",
+    "main.js": "/fake-movie-api/static/js/main.f29c6113.js",
+    "index.html": "/fake-movie-api/index.html",
+    "main.51b19700.css.map": "/fake-movie-api/static/css/main.51b19700.css.map",
+    "main.f29c6113.js.map": "/fake-movie-api/static/js/main.f29c6113.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.51b19700.css",
+    "static/js/main.f29c6113.js"
+  ]
+}
